@@ -22,6 +22,7 @@ header {
   background-color: #1a237e;
   color: white;
   border-radius: 5px;
+  position: relative;
 }
 
 header h1 {
@@ -33,6 +34,16 @@ main {
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
+}
+
+.auth-status {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 10px;
+  border-radius: 999px;
 }
 
 @media (min-width: 768px) {
@@ -55,6 +66,29 @@ section h3 {
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
   color: #1a237e;
+}
+
+#auth-container {
+  max-width: 1030px;
+}
+
+.auth-actions {
+  display: flex;
+  gap: 10px;
+}
+
+#logout-btn {
+  background-color: #616161;
+}
+
+#logout-btn:hover {
+  background-color: #424242;
+}
+
+.auth-hint {
+  margin-top: 12px;
+  color: #666;
+  font-size: 14px;
 }
 
 .activity-card {
@@ -197,4 +231,16 @@ footer {
   margin-top: 30px;
   padding: 20px;
   color: #666;
+}
+
+@media (max-width: 600px) {
+  .auth-status {
+    position: static;
+    display: inline-block;
+    margin-top: 8px;
+  }
+
+  .auth-actions {
+    flex-direction: column;
+  }
 }
