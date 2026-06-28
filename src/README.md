@@ -5,7 +5,8 @@ A super simple FastAPI application that allows students to view and sign up for 
 ## Features
 
 - View all available extracurricular activities
-- Sign up for activities
+- Sign up for activities with authentication
+- Role-based access (`student`, `admin`) for protected operations
 
 ## Getting Started
 
@@ -30,7 +31,23 @@ A super simple FastAPI application that allows students to view and sign up for 
 | Method | Endpoint                                                          | Description                                                         |
 | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
-| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
+| POST   | `/auth/login`                                                     | Login and receive auth token + role info                            |
+| GET    | `/auth/me`                                                        | Validate current token and get current user                         |
+| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity (auth required)                             |
+| DELETE | `/activities/{activity_name}/unregister?email=student@mergington.edu` | Unregister from an activity (auth required)                     |
+| POST   | `/activities`                                                     | Create activity (admin only)                                        |
+| PATCH  | `/activities/{activity_name}`                                     | Update activity (admin only)                                        |
+| DELETE | `/activities/{activity_name}`                                     | Delete activity (admin only)                                        |
+
+## Authentication
+
+- Include `X-Auth-Token` header for protected endpoints.
+- Demo users:
+   - `admin_teacher` / `teach123` (role: `admin`)
+   - `emma@mergington.edu` / `student123` (role: `student`)
+   - `michael@mergington.edu` / `student123` (role: `student`)
+
+Students can only sign up/unregister themselves.
 
 ## Data Model
 
